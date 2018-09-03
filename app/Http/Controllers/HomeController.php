@@ -17,10 +17,16 @@ class HomeController extends Controller
     }
     public function search(Request $request)
     {
+        // Redirect to index if theres no input
+        $input = $request->input('term');
+        if (empty($input))
+        {
+            return redirect()->route('index')->with('status', 'Search is empty');
+        }
         // API key placeholders that must be filled in by users.
         // You can find it on
         // https://www.yelp.com/developers/v3/manage_app
-        $APIKey = env('API_KEY');
+        
         // Complain if credentials haven't been filled out.
         // assert($APIKey, "Please supply your API key.");
 
@@ -34,6 +40,7 @@ class HomeController extends Controller
 
 
         function request($host, $path, $url_params = array()) {
+            $APIKey = env('API_KEY');
             // Send Yelp API Call
             try {
                 $curl = curl_init();
@@ -49,7 +56,7 @@ class HomeController extends Controller
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_HTTPHEADER => array(
-                        "authorization: Bearer " . $API_KEY,
+                        "authorization: Bearer " . $APIKey,
                         "cache-control: no-cache",
                     ),
                 ));
@@ -68,8 +75,11 @@ class HomeController extends Controller
             }
             return $response;
         }
-
-        $input = $request->input('location');
-        return view('layouts.search', compact('input'));
+        $params = array();
+        $params['location'] = $location;
+        $params['term'] = $input;
+        $httpResponse = json_decode(request($host, $path, $params));
+        // $decodedResponse = json_decode($httpResponse);
+        return view('layouts.search', compact('httpResponse'));
     }
 }

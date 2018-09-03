@@ -23,7 +23,6 @@
     </head>
     <body id="page-top">
         <div class="flex-center position-ref full-height">
-            @include('layouts.nav')
             @yield('content')
         </div>
     </body>

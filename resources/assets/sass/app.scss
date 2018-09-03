@@ -8,21 +8,16 @@
 @import url('https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700');
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+
 
 // Core variables and mixins
-@import 'variables';
+@import "variables.scss";
 @import "mixins.scss";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 // Global CSS
 @import "global.scss";
 // Components
 @import "navbar.scss";
 @import "masthead.scss";
 
-
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}

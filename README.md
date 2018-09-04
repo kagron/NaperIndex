@@ -33,5 +33,6 @@ Welcome to NaperIndex!  This is a Laravel & VueJS based app built to search busi
 11.  type `npm install` in the command prompt/terminal while in the NaperIndex directory
 12.  `composer install`
 13.  `npm run dev`
-14.  `php artisan serve`
-15.  Open up your favorite internet browser to navigate to localhost:8000
+14.  `php artisan key:generate`
+15.  `php artisan serve`
+16.  Open up your favorite internet browser to navigate to localhost:8000

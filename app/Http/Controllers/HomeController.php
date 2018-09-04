@@ -24,6 +24,7 @@ class HomeController extends Controller
     {
         // Redirect to index if theres no input
         $input = $request->input('term');
+        $page = $request->input('p');
         if (empty($input))
             return redirect()->route('index')->with('status', 'Search is empty');
         // API key placeholders that must be filled in by users.
@@ -84,7 +85,11 @@ class HomeController extends Controller
         $params['location'] = $location;
         $params['term'] = $input;
         $params['limit'] = 10;
-        $params['offset'] = 0;
+
+        // Change offset based on page in url
+        if(isset($page)) {
+            $params['offset'] = 10 * $page;
+        }
 
         // Decode our response into a PHP object using the built in json_decode method
         $httpResponse = json_decode(request($host, $path, $params));

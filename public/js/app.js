@@ -13884,8 +13884,9 @@ module.exports = __webpack_require__(39);
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13896,6 +13897,8 @@ module.exports = __webpack_require__(39);
 __webpack_require__(13);
 
 window.Vue = __webpack_require__(36);
+
+// import SearchResult from './components/search-result.vue';
 
 // This is the component for the search results
 Vue.component('search-result', {

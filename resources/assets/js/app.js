@@ -9,6 +9,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// import SearchResult from './components/search-result.vue';
 
 // This is the component for the search results
 Vue.component('search-result', {

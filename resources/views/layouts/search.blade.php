@@ -58,7 +58,7 @@
                 @endif
                 <a class="page-link" href="search?term={{ $input }}&p={{ $page - 1 }}" tabindex="-1">Previous</a>
             </li>
-            
+
             <!-- Determine which numbers to show -->
             {{-- This if statement allows it to always show 5 numbers and dynamically pick page numbers --}}
             @if($page <= 3)
@@ -69,12 +69,18 @@
                 @endfor
             @else
                 @for($i = $page - 2; $i <= $page + 2; $i++)
-                    @if($i > 0 && $i <= ($httpResponse->total / 10) - 2)
+                    @if($i > 0 && $i <= ($httpResponse->total / 10) + 1)
                         <li class="page-item<?php if($i == $page) echo " active"; ?>"><a class="page-link" href="search?term={{ $input }}&p={{ $i }}">{{ $i }}</a></li>
                     @endif
                 @endfor
             @endif
-            <li class="page-item">
+
+            {{-- Check if next button should be disabled --}}
+            @if($page <= ($httpResponse->total / 10) )
+                <li class="page-item">
+            @else 
+                <li class="page-item disabled">
+            @endif
                 <a class="page-link" href="search?term={{ $input }}&p={{ $page + 1 }}">Next</a>
             </li>
             </ul>

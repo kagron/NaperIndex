@@ -12,9 +12,9 @@ Vue.component('search-result', {
                     <strong>Categories: </strong> {{ cats }}
                 </div>
                 <div class="col-md-3 p-2">
-                    <p>{{ phone }}</p>
-                    <p>{{ address1 }}</p>
-                    <p>{{ city }}, {{ state }}</p>
+                    <p>{{ phone }} <br />
+                    {{ address1 }}<br />
+                    {{ city }}, {{ state }}</p>
                 </div>
             </div>
         </div>

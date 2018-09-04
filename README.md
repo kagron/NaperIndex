@@ -23,7 +23,6 @@ Welcome to NaperIndex!  This is a Laravel & VueJS based app built to search busi
 1.  Download the latest release of PHP from [here](https://secure.php.net/downloads.php)
 2.  Download the lastest version of Composer [here](https://getcomposer.org/)
 3.  Open command prompt/terminal and type `composer global require "laravel/installer"`
-3a. Make sure to place composer's system-wide vendor bin directory in your $PATH so the laravel executable can be located by your       system. 
 4.  Download the latest release of git from [here](https://git-scm.com/)
 5.  Download the latest version of NPM/NodeJS from [here](https://www.npmjs.com/get-npm)
 6.  Type `git clone https://github.com/kagron/NaperIndex.git` into your command prompt/terminal

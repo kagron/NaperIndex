@@ -15,14 +15,17 @@ class HomeController extends Controller
     {
         return view('layouts.index');
     }
+
+    /**
+     * Show the search results from a yelp API request
+     * using the term in the url
+     */
     public function search(Request $request)
     {
         // Redirect to index if theres no input
         $input = $request->input('term');
         if (empty($input))
-        {
             return redirect()->route('index')->with('status', 'Search is empty');
-        }
         // API key placeholders that must be filled in by users.
         // You can find it on
         // https://www.yelp.com/developers/v3/manage_app
@@ -38,7 +41,7 @@ class HomeController extends Controller
         // Set Location
         $location = "Naperville, IL";
 
-
+        // Create a request method using curl
         function request($host, $path, $url_params = array()) {
             $APIKey = env('API_KEY');
             // Send Yelp API Call
@@ -75,11 +78,18 @@ class HomeController extends Controller
             }
             return $response;
         }
+
+        // Set up the params array to go in our request to Yelp
         $params = array();
         $params['location'] = $location;
         $params['term'] = $input;
+        $params['limit'] = 10;
+        $params['offset'] = 0;
+
+        // Decode our response into a PHP object using the built in json_decode method
         $httpResponse = json_decode(request($host, $path, $params));
-        // $decodedResponse = json_decode($httpResponse);
-        return view('layouts.search', compact('httpResponse'));
+
+        // Return the view with our response
+        return view('layouts.search', compact('httpResponse', 'input'));
     }
 }

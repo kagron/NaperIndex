@@ -11,6 +11,6 @@
 |
 */
 
-
+// Send our routes to the HomeController
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/search', 'HomeController@search')->name('search');

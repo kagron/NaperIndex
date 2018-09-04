@@ -16,13 +16,14 @@
               </div>
             </div>
           </form>
+          <!-- If there is nothing in the input, it will redirect with a status session variable which will display here -->
+          @if (session('status'))
           <div class="card-body w-75 mx-auto">
-              @if (session('status'))
-                  <div class="alert alert-danger">
-                      {{ session('status') }}
-                  </div>
-              @endif
+              <div class="alert alert-danger">
+                  {{ session('status') }}
+              </div>
           </div>
+          @endif
       </div>
     </div>
   </header>

@@ -9,7 +9,7 @@
         <div class="input-group mb-3">
             <input type="text"  class="form-control" placeholder="Search Naperville Businesses" name="term" />
             <div class="input-group-append">
-            <button type="submit" class="btn btn-primary text-uppercase" href="search">Go</button>
+                <button type="submit" class="btn btn-primary text-uppercase" href="search">Go</button>
             </div>
         </div>
     </form>

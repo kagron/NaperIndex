@@ -62,6 +62,7 @@ class HomeController extends Controller
         // Return the view with our response
         return view('layouts.search', compact('httpResponse', 'input', 'page'));
     }
+    
     /**
      * GET /businesses/business-alias
      * Retrieve business info for detailed page

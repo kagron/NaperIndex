@@ -13905,6 +13905,7 @@ app = new Vue({
     el: '#app'
 });
 
+// jQuery
 $.fn.stars = function () {
     return $(this).each(function () {
         // Get the value

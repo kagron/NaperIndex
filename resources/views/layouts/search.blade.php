@@ -3,6 +3,7 @@
 @section('content')
 @include('layouts.nav2')
 <div class="container" style="padding-top: 100px">
+
     {{-- Create a search bar at the top --}}
     <form action="{{ route('search') }}" method="GET">
         <div class="input-group mb-3">
@@ -57,6 +58,7 @@
                 @endif
                 <a class="page-link" href="search?term={{ $input }}&p={{ $page - 1 }}" tabindex="-1">Previous</a>
             </li>
+            
             <!-- Determine which numbers to show -->
             {{-- This if statement allows it to always show 5 numbers and dynamically pick page numbers --}}
             @if($page <= 3)

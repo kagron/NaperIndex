@@ -17,6 +17,7 @@ class HomeController extends Controller
     }
 
     /**
+     * GET /search?params
      * Show the search results from a yelp API request
      * using the term in the url
      */
@@ -75,17 +76,11 @@ class HomeController extends Controller
         $businessPath = "/v3/businesses/" . $alias;  // Business ID will come after slash.
         $reviewPath = $businessPath . "/reviews";
 
-        // Set Location
-        $location = "Naperville, IL";
-
-
-        // Set up the params array to go in our request to Yelp
-        $params = array();
 
 
         // Decode our responses into a PHP object using the built in json_decode method
-        $httpResponse = json_decode($this->request($host, $businessPath, $params));
-        $reviews = json_decode($this->request($host, $reviewPath, $params));
+        $httpResponse = json_decode($this->request($host, $businessPath));
+        $reviews = json_decode($this->request($host, $reviewPath));
 
         return view('layouts.info', compact('alias', 'reviews', 'httpResponse'));
     }

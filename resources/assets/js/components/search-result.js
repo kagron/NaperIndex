@@ -8,7 +8,8 @@ Vue.component('search-result', {
             <div class="row">
                 <div class="col-md-9 p-2">
                     <h3><a :href="getAlias">{{ name }} </a></h3>   
-                    {{ getStars }}{{ rating }}<br />
+                    <span class="stars">{{ rating }}</span><br />
+                    <strong>Categories: </strong> {{ cats }}
                 </div>
                 <div class="col-md-3 p-2">
                     <p>{{ phone }}</p>
@@ -27,16 +28,10 @@ Vue.component('search-result', {
       address1: { required: true },
       city: { required: true },
       state: { required: true },
-      alias: { required: true }
+      alias: { required: true },
+      cats: { required: true}
     },
     computed: {
-        getStars(){
-            var str = "";
-            for(var i = 0.5; i < this.rating; i++){
-                str += "★";
-            }
-            return str;
-        },
         getAlias(){
             return "businesses/" + this.alias;
         }

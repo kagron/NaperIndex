@@ -6,7 +6,7 @@ Vue.component('review', {
             </div>
             <div class="col-md-2">
                 <h5>{{ user }}</h5>
-                {{ rating }}
+                <span class="stars">{{ rating }}</span>
             </div> 
             <div class="col-md-9">
                 {{ text }} <a :href="url">Read more</a>

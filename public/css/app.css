@@ -10716,3 +10716,15 @@ header.masthead .intro-text .intro-heading {
   }
 }
 
+span.stars,
+span.stars span {
+  display: block;
+  background: url(/images/stars.png?83e2ee7d5dcf949a3b6fc3ebe6b8230b) 0 -16px repeat-x;
+  width: 80px;
+  height: 16px;
+}
+
+span.stars span {
+  background-position: 0 0;
+}
+

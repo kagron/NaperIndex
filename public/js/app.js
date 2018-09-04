@@ -13902,7 +13902,23 @@ __webpack_require__(57);
 __webpack_require__(58);
 
 app = new Vue({
-  el: '#app'
+    el: '#app'
+});
+
+$.fn.stars = function () {
+    return $(this).each(function () {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, Math.min(5, val)) * 16;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+};
+$(function () {
+    $('span.stars').stars();
 });
 
 /***/ }),
@@ -47202,7 +47218,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports) {
 
 Vue.component('search-result', {
-    template: "\n    <div class=\"row\">\n        <div class=\"col-md-3\">\n            <img :src=\"picture\" :alt=\"name\" class=\"img-fluid img-thumbnail\">\n        </div>\n        <div class=\"col-md-9\">\n            <div class=\"row\">\n                <div class=\"col-md-9 p-2\">\n                    <h3><a :href=\"getAlias\">{{ name }} </a></h3>   \n                    {{ getStars }}{{ rating }}<br />\n                </div>\n                <div class=\"col-md-3 p-2\">\n                    <p>{{ phone }}</p>\n                    <p>{{ address1 }}</p>\n                    <p>{{ city }}, {{ state }}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    ",
+    template: "\n    <div class=\"row\">\n        <div class=\"col-md-3\">\n            <img :src=\"picture\" :alt=\"name\" class=\"img-fluid img-thumbnail\">\n        </div>\n        <div class=\"col-md-9\">\n            <div class=\"row\">\n                <div class=\"col-md-9 p-2\">\n                    <h3><a :href=\"getAlias\">{{ name }} </a></h3>   \n                    <span class=\"stars\">{{ rating }}</span><br />\n                    <strong>Categories: </strong> {{ cats }}\n                </div>\n                <div class=\"col-md-3 p-2\">\n                    <p>{{ phone }}</p>\n                    <p>{{ address1 }}</p>\n                    <p>{{ city }}, {{ state }}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    ",
     props: {
         name: { required: true },
         picture: { required: true },
@@ -47211,16 +47227,10 @@ Vue.component('search-result', {
         address1: { required: true },
         city: { required: true },
         state: { required: true },
-        alias: { required: true }
+        alias: { required: true },
+        cats: { required: true }
     },
     computed: {
-        getStars: function getStars() {
-            var str = "";
-            for (var i = 0.5; i < this.rating; i++) {
-                str += "★";
-            }
-            return str;
-        },
         getAlias: function getAlias() {
             return "businesses/" + this.alias;
         }
@@ -47232,7 +47242,7 @@ Vue.component('search-result', {
 /***/ (function(module, exports) {
 
 Vue.component('review', {
-    template: '\n        <div class="row">\n            <div class="col-md-1">\n                <img :src="user_img" :alt="user" class="img-fluid img-thumbnail" />\n            </div>\n            <div class="col-md-2">\n                <h5>{{ user }}</h5>\n                {{ rating }}\n            </div> \n            <div class="col-md-9">\n                {{ text }} <a :href="url">Read more</a>\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="row">\n            <div class="col-md-1">\n                <img :src="user_img" :alt="user" class="img-fluid img-thumbnail" />\n            </div>\n            <div class="col-md-2">\n                <h5>{{ user }}</h5>\n                <span class="stars">{{ rating }}</span>\n            </div> \n            <div class="col-md-9">\n                {{ text }} <a :href="url">Read more</a>\n            </div>\n        </div>\n    ',
     props: {
         user: { required: true },
         user_img: { required: true },

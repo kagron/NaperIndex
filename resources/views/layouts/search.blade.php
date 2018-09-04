@@ -40,10 +40,17 @@
         @endphp
 
         {{-- Pass every search result into vue --}}
-        <search-result picture="{{ $business->image_url }}" name="{{ $business->name }}" rating="{{ $business->rating }}"
-            phone="{{ $business->display_phone }}" address1="{{ $business->location->address1 }}" city="{{ $business->location->city }}" 
-            state="{{ $business->location->state }}" alias="{{ $business->alias }}" 
-            cats="{{ $cats }}"></search-result>
+        <search-result 
+            picture="{{ $business->image_url }}" 
+            name="{{ $business->name }}" 
+            rating="{{ $business->rating }}"
+            phone="{{ $business->display_phone }}" 
+            address1="{{ $business->location->address1 }}" 
+            city="{{ $business->location->city }}" 
+            state="{{ $business->location->state }}" 
+            alias="{{ $business->alias }}" 
+            cats="{{ $cats }}">
+        </search-result>
             <hr>
         @endforeach
 

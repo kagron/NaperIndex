@@ -23,21 +23,19 @@ class HomeController extends Controller
      */
     public function search(Request $request)
     {
-        // Redirect to index if theres no input
+        // Variables
         $input = $request->input('term');
         $page = $request->input('p');
         $numOnPage = 10;
 
+        // Redirect to index if theres no input
         if (empty($input))
             return redirect()->route('index')->with('status', 'Search is empty');
         
-        // Complain if credentials haven't been filled out.
-        // assert($APIKey, "Please supply your API key.");
 
         // API constants
         $host = "https://api.yelp.com";
         $path = "/v3/businesses/search";
-        $businessPath = "/v3/businesses/";  // Business ID will come after slash.
         
         // Set Location
         $location = "Naperville, IL";
@@ -62,17 +60,15 @@ class HomeController extends Controller
         // Return the view with our response
         return view('layouts.search', compact('httpResponse', 'input', 'page'));
     }
-    
+
     /**
      * GET /businesses/business-alias
      * Retrieve business info for detailed page
      */
     public function info($alias)
     {
-        if (!isset($alias))
-            return redirect()->route('index')->with('status', 'That business doesn\'t exist');
 
-             // API constants
+        // API constants
         $host = "https://api.yelp.com";
         $businessPath = "/v3/businesses/" . $alias;  // Business ID will come after slash.
         $reviewPath = $businessPath . "/reviews";
@@ -95,6 +91,7 @@ class HomeController extends Controller
             if (FALSE === $curl)
                 throw new Exception('Failed to initialize');
             $url = $host . $path . "?" . http_build_query($url_params);
+            // Set headers
             curl_setopt_array($curl, array(
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,  // Capture response.
@@ -109,12 +106,18 @@ class HomeController extends Controller
                 ),
             ));
             $response = curl_exec($curl);
+
+            // Throw errors
             if (FALSE === $response)
                 throw new Exception(curl_error($curl), curl_errno($curl));
+
             $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
             if (200 != $http_status)
                 throw new Exception($response, $http_status);
             curl_close($curl);
+
+        // Catch errors
         } catch(Exception $e) {
             trigger_error(sprintf(
                 'Curl failed with error #%d: %s',

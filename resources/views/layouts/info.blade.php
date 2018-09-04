@@ -106,8 +106,13 @@
 
             {{-- Loop through all the reviews and pass into Vue components --}}
             @foreach ($reviews->reviews as $review)
-                <review user="{{ $review->user->name }}" user_img="{{ $review->user->image_url }}" rating="{{ $review->rating }}"
-                    text="{{ $review->text }}" url="{{ $review->url }}"></review>
+                <review 
+                    user="{{ $review->user->name }}" 
+                    user_img="{{ $review->user->image_url }}" 
+                    rating="{{ $review->rating }}"
+                    text="{{ $review->text }}" 
+                    url="{{ $review->url }}">
+                </review>
                     <hr>
             @endforeach
         </div>

@@ -10,7 +10,6 @@ My instructions were given [here](https://jira.seraphdevelopment.com/stash/proje
 
 ## About
 
----
 
 PHP 7.1.3
 Laravel 5.6+
@@ -20,7 +19,6 @@ Welcome to NaperIndex!  This is a Laravel & VueJS based app built to search busi
 
 ## Installation
 
----
 
 1.  Download the latest release of PHP from [here](https://secure.php.net/downloads.php)
 2.  Download the lastest version of Composer [here](https://getcomposer.org/)

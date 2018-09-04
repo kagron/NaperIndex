@@ -10,7 +10,7 @@
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
               <!-- TODO: create about page -->
-            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="https://github.com/kagron/NaperIndex">About</a>
           </li>
         </ul>
       </div>

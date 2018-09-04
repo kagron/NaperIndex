@@ -25,16 +25,15 @@ class HomeController extends Controller
         // Redirect to index if theres no input
         $input = $request->input('term');
         $page = $request->input('p');
+        $numOnPage = 10;
+
         if (empty($input))
             return redirect()->route('index')->with('status', 'Search is empty');
-        // API key placeholders that must be filled in by users.
-        // You can find it on
-        // https://www.yelp.com/developers/v3/manage_app
         
         // Complain if credentials haven't been filled out.
         // assert($APIKey, "Please supply your API key.");
 
-        // API constants, you shouldn't have to change these.
+        // API constants
         $host = "https://api.yelp.com";
         $path = "/v3/businesses/search";
         $businessPath = "/v3/businesses/";  // Business ID will come after slash.
@@ -84,17 +83,19 @@ class HomeController extends Controller
         $params = array();
         $params['location'] = $location;
         $params['term'] = $input;
-        $params['limit'] = 10;
+        $params['limit'] = $numOnPage;
 
         // Change offset based on page in url
-        if(isset($page)) {
-            $params['offset'] = 10 * $page;
+        if(isset($page) && $page > 1) {
+            $params['offset'] = ($numOnPage) * $page - $numOnPage;
+        } else {
+            $page = 1;
         }
 
         // Decode our response into a PHP object using the built in json_decode method
         $httpResponse = json_decode(request($host, $path, $params));
 
         // Return the view with our response
-        return view('layouts.search', compact('httpResponse', 'input'));
+        return view('layouts.search', compact('httpResponse', 'input', 'page'));
     }
 }

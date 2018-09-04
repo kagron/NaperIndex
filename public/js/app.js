@@ -13902,7 +13902,7 @@ window.Vue = __webpack_require__(36);
 
 // This is the component for the search results
 Vue.component('search-result', {
-    template: '\n    <div class="row">\n        <div class="col-md-3">\n            <img :src="picture" :alt="name" class="img-fluid">\n        </div>\n        <div class="col-md-9 d-flex bd-highlight">\n            <div class="p-2 w-100 bd-highlight">\n                <h3><a href="#">{{ name }} </a></h3>   \n                {{ rating }}<br />\n            </div>\n            <div class="p-2 flex-shrink-0 bd-hightlight">\n                <p>{{ phone }}</p>\n                <p>{{ address1 }}</p>\n                \n            <p>{{ city }}, {{ state }}</p>\n            </div>\n        </div>\n    </div>\n    ',
+    template: '\n    <div class="row">\n        <div class="col-md-3">\n            <img :src="picture" :alt="name" class="img-fluid">\n        </div>\n        <div class="col-md-9">\n            <div class="row">\n                <div class="col-md-9 p-2">\n                    <h3><a href="#">{{ name }} </a></h3>   \n                    {{ rating }}<br />\n                </div>\n                <div class="col-md-3 p-2">\n                    <p>{{ phone }}</p>\n                    <p>{{ address1 }}</p>\n                    <p>{{ city }}, {{ state }}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    ',
     props: {
         name: { required: true },
         picture: { required: true },

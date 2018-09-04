@@ -14,6 +14,7 @@
             </div>
         </div>
     </form>
+
     {{-- Check if there is anything in the array, then display it --}}
     @if(!empty($httpResponse->businesses))
         <div class="d-flex justify-content-between">
@@ -27,22 +28,39 @@
             state="{{ $business->location->state }}"></search-result>
             <hr>
         @endforeach
-    {{-- Pages --}}
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          <!-- Fancy pagination -->
-          @for($i = 1; $i < 5; $i++)
-            <li class="page-item"><a class="page-link" href="search?term={{ $input }}&p={{ $i }}">{{ $i }}</a></li>
-          @endfor
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-    </nav>
-    <hr>
+        {{-- Pages --}}
+        <nav>
+            <ul class="pagination justify-content-center">
+                @if($page >= 2)
+                    <li class="page-item">
+                @else 
+                    <li class="page-item disabled">
+                @endif
+                <a class="page-link" href="search?term={{ $input }}&p={{ $page - 1 }}" tabindex="-1">Previous</a>
+            </li>
+            <!-- Determine which numbers to show -->
+            @if($page <= 3)
+                @for($i = 0; $i <= 5; $i++)
+                    @if($i > 0 && $i <= ($httpResponse->total / 10) - 2)
+                        <li class="page-item<?php if($i == $page) echo " active"; ?>"><a class="page-link" href="search?term={{ $input }}&p={{ $i }}">{{ $i }}</a></li>
+                    @endif
+                @endfor
+
+            @else
+                @for($i = $page - 2; $i <= $page + 2; $i++)
+                    @if($i > 0 && $i <= ($httpResponse->total / 10) - 2)
+                        <li class="page-item<?php if($i == $page) echo " active"; ?>"><a class="page-link" href="search?term={{ $input }}&p={{ $i }}">{{ $i }}</a></li>
+                    @endif
+                @endfor
+            @endif
+            <li class="page-item">
+                <a class="page-link" href="search?term={{ $input }}&p={{ $page + 1 }}">Next</a>
+            </li>
+            </ul>
+        </nav>
+        <hr>
+
+    {{-- If there's nothing from Yelp's response --}}
     @else 
             There are no results for '{{ $input }}'.  Please try searching again.
     @endif

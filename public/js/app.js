@@ -13898,24 +13898,11 @@ __webpack_require__(13);
 
 window.Vue = __webpack_require__(36);
 
-// import SearchResult from './components/search-result.vue';
-
-// This is the component for the search results
-Vue.component('search-result', {
-    template: '\n    <div class="row">\n        <div class="col-md-3">\n            <img :src="picture" :alt="name" class="img-fluid">\n        </div>\n        <div class="col-md-9">\n            <div class="row">\n                <div class="col-md-9 p-2">\n                    <h3><a href="#">{{ name }} </a></h3>   \n                    {{ rating }}<br />\n                </div>\n                <div class="col-md-3 p-2">\n                    <p>{{ phone }}</p>\n                    <p>{{ address1 }}</p>\n                    <p>{{ city }}, {{ state }}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    ',
-    props: {
-        name: { required: true },
-        picture: { required: true },
-        rating: { required: true },
-        phone: { required: true },
-        address1: { required: true },
-        city: { required: true },
-        state: { required: true }
-    }
-});
+__webpack_require__(57);
+__webpack_require__(58);
 
 app = new Vue({
-    el: '#app'
+  el: '#app'
 });
 
 /***/ }),
@@ -47192,6 +47179,68 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */
+/***/ (function(module, exports) {
+
+Vue.component('search-result', {
+    template: "\n    <div class=\"row\">\n        <div class=\"col-md-3\">\n            <img :src=\"picture\" :alt=\"name\" class=\"img-fluid img-thumbnail\">\n        </div>\n        <div class=\"col-md-9\">\n            <div class=\"row\">\n                <div class=\"col-md-9 p-2\">\n                    <h3><a :href=\"getAlias\">{{ name }} </a></h3>   \n                    {{ getStars }}{{ rating }}<br />\n                </div>\n                <div class=\"col-md-3 p-2\">\n                    <p>{{ phone }}</p>\n                    <p>{{ address1 }}</p>\n                    <p>{{ city }}, {{ state }}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    ",
+    props: {
+        name: { required: true },
+        picture: { required: true },
+        rating: { required: true },
+        phone: { required: true },
+        address1: { required: true },
+        city: { required: true },
+        state: { required: true },
+        alias: { required: true }
+    },
+    computed: {
+        getStars: function getStars() {
+            var str = "";
+            for (var i = 0.5; i < this.rating; i++) {
+                str += "★";
+            }
+            return str;
+        },
+        getAlias: function getAlias() {
+            return "businesses/" + this.alias;
+        }
+    }
+});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+Vue.component('review', {
+    template: '\n        <div class="row">\n            <div class="col-md-1">\n                <img :src="user_img" :alt="user" class="img-fluid img-thumbnail" />\n            </div>\n            <div class="col-md-2">\n                <h5>{{ user }}</h5>\n                {{ rating }}\n            </div> \n            <div class="col-md-9">\n                {{ text }} <a :href="url">Read more</a>\n            </div>\n        </div>\n    ',
+    props: {
+        user: { required: true },
+        user_img: { required: true },
+        rating: { required: true },
+        text: { required: true },
+        url: { required: true }
+    }
+});
 
 /***/ })
 /******/ ]);

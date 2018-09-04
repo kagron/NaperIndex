@@ -14,3 +14,4 @@
 // Send our routes to the HomeController
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/search', 'HomeController@search')->name('search');
+Route::get('businesses/{alias}', 'HomeController@info')->name('info');

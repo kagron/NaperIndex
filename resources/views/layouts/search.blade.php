@@ -25,7 +25,7 @@
         @foreach($httpResponse->businesses as $business)
         <search-result picture="{{ $business->image_url }}" name="{{ $business->name }}" rating="{{ $business->rating }}"
             phone="{{ $business->display_phone }}" address1="{{ $business->location->address1 }}" city="{{ $business->location->city }}" 
-            state="{{ $business->location->state }}"></search-result>
+            state="{{ $business->location->state }}" alias="{{ $business->alias }}" ></search-result>
             <hr>
         @endforeach
         {{-- Pages --}}

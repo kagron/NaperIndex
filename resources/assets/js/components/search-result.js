@@ -1,0 +1,44 @@
+Vue.component('search-result', {
+    template: `
+    <div class="row">
+        <div class="col-md-3">
+            <img :src="picture" :alt="name" class="img-fluid img-thumbnail">
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-9 p-2">
+                    <h3><a :href="getAlias">{{ name }} </a></h3>   
+                    {{ getStars }}{{ rating }}<br />
+                </div>
+                <div class="col-md-3 p-2">
+                    <p>{{ phone }}</p>
+                    <p>{{ address1 }}</p>
+                    <p>{{ city }}, {{ state }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    `,
+    props: {
+      name: { required: true },
+      picture: { required: true },
+      rating: { required: true },
+      phone: { required: true },
+      address1: { required: true },
+      city: { required: true },
+      state: { required: true },
+      alias: { required: true }
+    },
+    computed: {
+        getStars(){
+            var str = "";
+            for(var i = 0.5; i < this.rating; i++){
+                str += "★";
+            }
+            return str;
+        },
+        getAlias(){
+            return "businesses/" + this.alias;
+        }
+    }
+});
